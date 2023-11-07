@@ -1,6 +1,6 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
-import { Login, Signup, Welcome } from "./screens";
+import { Login, Signup, Welcome , ChatComponent } from "./screens";
 
 const Stack = createNativeStackNavigator();
 
@@ -25,6 +25,7 @@ export default function App() {
             headerShown: false
           }}
         />
+        
         <Stack.Screen
           name="Signup"
           component={Signup}
@@ -32,7 +33,16 @@ export default function App() {
             headerShown: false
           }}
         />
+        
+        <Stack.Screen
+          name="ChatComponent"
+          component={ChatComponent}
+          options={{
+            headerShown: false
+          }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
+
   );
 }

@@ -126,7 +126,7 @@ const Login = ({ navigation }) => {
 
                 <Button
                     title="Login"
-                    onPress={() => navigation.navigate("ChatComponent")}
+                    onPress={() => navigation.navigate("HomeScreen")}
                     filled
                     style={{
                         marginTop: 18,

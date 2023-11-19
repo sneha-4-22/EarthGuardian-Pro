@@ -1,6 +1,6 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
-import { Login, Signup, Welcome , ChatComponent } from "./screens";
+import { Login, Signup, Welcome ,HomeScreen, ChatComponent,Cfcal } from "./screens";
 
 const Stack = createNativeStackNavigator();
 
@@ -33,13 +33,28 @@ export default function App() {
             headerShown: false
           }}
         />
-        
+        <Stack.Screen
+          name="HomeScreen"
+          component={HomeScreen}
+          options={{
+            headerShown: false
+          }}
+        />
         <Stack.Screen
           name="ChatComponent"
           component={ChatComponent}
           options={{
             headerShown: false
           }}
+          
+        />
+        <Stack.Screen
+          name="Cfcal"
+          component={Cfcal}
+          options={{
+            headerShown: false
+          }}
+          
         />
       </Stack.Navigator>
     </NavigationContainer>

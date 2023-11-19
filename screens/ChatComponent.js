@@ -4,8 +4,8 @@ import axios from 'axios';
 
 const ChatComponent = () => {
   const [messages, setMessages] = useState([]);
-  const apiKey = 'VF.DM.6540faec31a963000835f911.fbIycgRux18o7wEM'; // Replace with your actual Voiceflow API key
-  const userID = 'user_123'; // Unique ID used to track conversation state
+  const apiKey = 'VF.DM.6540faec31a963000835f911.fbIycgRux18o7wEM';
+  const userID = 'user_123'; 
 
   const handleSend = async (newMessages = []) => {
     try {
@@ -41,10 +41,9 @@ const ChatComponent = () => {
         data: body,
       });
 
-      // Transform the Voiceflow API response into an array of message objects
       const botMessage = {
         _id: new Date().getTime(),
-        text: response.data[response.data.length - 1].payload.message, // Extract the last message from the response
+        text: response.data[response.data.length - 1].payload.message, 
         createdAt: new Date(),
         user: {
           _id: 2,
@@ -59,7 +58,6 @@ const ChatComponent = () => {
   };
 
   useEffect(() => {
-    // Initial message when the component mounts
     const initialMessage = {
       _id: new Date().getTime(),
       text: 'Hi, my name is EcoBot from EcoSankalp🌱',

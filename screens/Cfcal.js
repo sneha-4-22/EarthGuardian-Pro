@@ -125,9 +125,8 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 28,
     fontWeight: 'bold',
-    color:"#97FFF4",
+    color:"#91C8E4",
     fontStyle:"italic",
-    
     fontFamily:"serif",
     
   },
@@ -143,7 +142,7 @@ const styles = StyleSheet.create({
   input: {
     height: 40,
     padding: 10,
-    borderColor: '#6499E9',
+    borderColor: '#91C8E4',
     borderWidth: 1,
     borderRadius: 5,
     color:"white"

@@ -19,14 +19,22 @@ const HomeScreen = () => {
         style={styles.button}
         onPress={handleCarbonFootprintPress}
       >
-        
         <Text style={styles.buttonText}>Carbon Footprint Calculator</Text>
       </TouchableOpacity>
 
       <TouchableOpacity style={styles.button} onPress={handleChatBotPress}>
         <Text style={styles.buttonText}>EcoSankalp Chat Bot</Text>
       </TouchableOpacity>
+      <TouchableOpacity style={styles.button} onPress={handleChatBotPress}>
+        <Text style={styles.buttonText}>Eco Mentorship</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.button} onPress={handleChatBotPress}>
+        <Text style={styles.buttonText}>
+          Leaderboard
+        </Text>
+      </TouchableOpacity>
     </View>
+    
   );
 };
 

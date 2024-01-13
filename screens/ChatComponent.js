@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { GiftedChat } from 'react-native-gifted-chat';
+import { View, StyleSheet } from 'react-native';
+import { GiftedChat, Bubble } from 'react-native-gifted-chat';
 import axios from 'axios';
+
 
 const ChatComponent = () => {
   const [messages, setMessages] = useState([]);
@@ -64,7 +66,7 @@ const ChatComponent = () => {
       createdAt: new Date(),
       user: {
         _id: 2,
-        name: 'Voiceflow Assistant',
+        name: 'Eco Bot',
       },
     };
 
@@ -72,14 +74,38 @@ const ChatComponent = () => {
   }, []);
 
   return (
+    <View style={styles.container}>
     <GiftedChat
       messages={messages}
       onSend={handleSend}
       user={{
         _id: 1,
       }}
+      renderUsernameOnMessage
+      showUserAvatar
+      alwaysShowSend
+      renderSend={() => null}
+      renderBubble={(props) => (
+        <Bubble
+          {...props}
+          wrapperStyle={{
+            right: {
+              backgroundColor: 'red', 
+            },
+            left: {
+              backgroundColor: 'white', 
+            },
+          }}
+        />
+      )}
     />
-  );
+  </View>
+);
 };
-
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#071952',
+  },
+});
 export default ChatComponent;

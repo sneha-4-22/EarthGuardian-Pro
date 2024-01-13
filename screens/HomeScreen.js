@@ -43,19 +43,19 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#B9D9EB'
+    backgroundColor: '#002244'
   },
   button: {
-    backgroundColor: '#002244',
+    backgroundColor: '#B9D9EB',
     padding: 15,
     margin: 40,
     borderRadius: 20,
     width: '70%',
     borderWidth: 2, 
-    borderColor: '#545AA7',
+    borderColor: 'blue',
   },
   buttonText: {
-    color: '#fff',
+    color: '#002244',
     fontSize: 18,
     fontWeight: 'bold',
     textAlign: 'center',

@@ -49,7 +49,7 @@ const ChatComponent = () => {
         createdAt: new Date(),
         user: {
           _id: 2,
-          name: 'Voiceflow Assistant',
+          name: 'Eco Bot',
         },
       };
 
@@ -90,7 +90,7 @@ const ChatComponent = () => {
           {...props}
           wrapperStyle={{
             right: {
-              backgroundColor: 'red', 
+              backgroundColor: 'red ', 
             },
             left: {
               backgroundColor: 'white', 

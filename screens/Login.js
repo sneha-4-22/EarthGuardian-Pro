@@ -5,11 +5,23 @@ import COLORS from '../constants/colors';
 import { Ionicons } from "@expo/vector-icons";
 import Checkbox from "expo-checkbox"
 import Button from '../components/Button';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../config/firebase';
 
 const Login = ({ navigation }) => {
     const [isPasswordShown, setIsPasswordShown] = useState(false);
     const [isChecked, setIsChecked] = useState(false);
-    
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const handleLogin = async () => {
+        if(email && password)
+        {try {
+            await signInWithEmailAndPassword(auth, email, password);
+            navigation.navigate("HomeScreen");
+        } catch (error) {
+            console.error('Error logging in:', error.message);
+        }}
+    };
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: '#16154E' }}>
             <View style={{ flex: 1, marginHorizontal: 22 }}>
@@ -54,8 +66,11 @@ const Login = ({ navigation }) => {
                             placeholder='Enter your email address'
                             placeholderTextColor={'white'}
                             keyboardType='email-address'
+                            value={email}
+                            onChangeText={value=>setEmail(value)}
                             style={{
-                                width: "100%"
+                                width: "100%",
+                                color:"white"
                             }}
                         />
                     </View>
@@ -84,6 +99,8 @@ const Login = ({ navigation }) => {
                             placeholder='Enter your password'
                             placeholderTextColor={'white'}
                             secureTextEntry={isPasswordShown}
+                            value={password}
+                            onChangeText={value=>setPassword(value)}
                             style={{
                                 width: "100%",
                                 color: 'white'
@@ -126,7 +143,7 @@ const Login = ({ navigation }) => {
 
                 <Button
                     title="Login"
-                    onPress={() => navigation.navigate("HomeScreen")}
+                    onPress={handleLogin}
                     filled
                     style={{
                         marginTop: 18,

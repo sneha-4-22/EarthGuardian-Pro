@@ -5,10 +5,26 @@ import COLORS from '../constants/colors';
 import { Ionicons } from "@expo/vector-icons";
 import Checkbox from "expo-checkbox"
 import Button from '../components/Button';
-
+import { auth } from '../config/firebase';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 const Signup = ({ navigation }) => {
     const [isPasswordShown, setIsPasswordShown] = useState(false);
     const [isChecked, setIsChecked] = useState(false);
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const handleSignup = async () => {
+        if(email && password){
+            try {
+                
+                await createUserWithEmailAndPassword(auth, email, password);
+                navigation.navigate("HomeScreen");
+            } catch (error) {
+                console.error('Error signing up:', error.message);
+            }
+        }
+        
+    };
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: '#16154E' }}>
             <View style={{ flex: 1, marginHorizontal: 22, color: 'white' }}>
@@ -50,6 +66,8 @@ const Signup = ({ navigation }) => {
                         <TextInput
                             placeholder='Enter your email address'
                             placeholderTextColor={"white"}
+                            value={email}
+                            onChangeText={value=>setEmail(value)}
                             keyboardType='email-address'
                             style={{
                                 width: "100%",
@@ -127,6 +145,8 @@ const Signup = ({ navigation }) => {
                             placeholder='Enter your password'
                             placeholderTextColor={'white'}
                             secureTextEntry={isPasswordShown}
+                            value={password}
+                            onChangeText={value=>setPassword(value)}
                             style={{
                                 width: "100%",
                                 color: 'white'
@@ -170,6 +190,7 @@ const Signup = ({ navigation }) => {
                 <Button
                     title="Sign Up"
                     filled
+                    onPress={handleSignup} 
                     style={{
                         marginTop: 18,
                         marginBottom: 4,

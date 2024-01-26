@@ -1,4 +1,4 @@
-import { View, Text, Image , Pressable, TextInput, TouchableOpacity } from 'react-native'
+import { View, Text, Image , Pressable, TextInput, TouchableOpacity ,StyleSheet} from 'react-native'
 import React, { useState } from 'react'
 import { SafeAreaView } from "react-native-safe-area-context";
 import COLORS from '../constants/colors';
@@ -8,18 +8,41 @@ import Button from '../components/Button';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../config/firebase';
 
+
 const Login = ({ navigation }) => {
     const [isPasswordShown, setIsPasswordShown] = useState(false);
     const [isChecked, setIsChecked] = useState(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [showAlert, setShowAlert] = useState(false);  
+    const [alertMessage, setAlertMessage] = useState('');
+    const closeAlert = () => {
+        setShowAlert(false);
+    };
     const handleLogin = async () => {
         if(email && password)
         {try {
             await signInWithEmailAndPassword(auth, email, password);
             navigation.navigate("HomeScreen");
         } catch (error) {
-            console.error('Error logging in:', error.message);
+            // console.error('Error logging in:', error);
+
+            let errorMessage = "An error occurred during login.";
+
+            if (error.code === "auth/user-not-found") {
+                errorMessage = "User not found. Please check your email.";
+            } else if (error.code === "auth/invalid-credential") {
+                errorMessage = "Incorrect password. Please try again.";
+            } else if (error.code === "auth/invalid-email") {
+                errorMessage = "Invalid email address. Please check your email.";
+            }
+
+            // alert(errorMessage);
+            setAlertMessage(errorMessage);
+            setShowAlert(true);
+            setTimeout(() => {
+                setShowAlert(false);
+            }, 1000);
         }}
     };
     return (
@@ -232,7 +255,7 @@ const Login = ({ navigation }) => {
                         <Text style={{  color: 'white' }}>Google</Text>
                     </TouchableOpacity>
                 </View>
-
+                
                 <View style={{
                     flexDirection: "row",
                     justifyContent: "center",
@@ -250,9 +273,31 @@ const Login = ({ navigation }) => {
                         }}>Register</Text>
                     </Pressable>
                 </View>
+                {showAlert && (
+                    <View style={styles.alertContainer}>
+                        <Text style={styles.alertMessage}>{alertMessage}</Text>
+                    </View>
+                )}
             </View>
         </SafeAreaView>
     )
 }
+
+const styles = StyleSheet.create({
+    alertContainer: {
+        position: 'absolute',
+        bottom: 100,
+        left: 40,
+        padding: 8,
+        backgroundColor: 'white',
+        borderRadius: 8,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    alertMessage: {
+        color: 'black',
+        fontSize: 14,
+    },
+});
 
 export default Login

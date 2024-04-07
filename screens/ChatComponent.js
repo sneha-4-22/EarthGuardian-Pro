@@ -62,7 +62,7 @@ const ChatComponent = () => {
   useEffect(() => {
     const initialMessage = {
       _id: new Date().getTime(),
-      text: 'Hi, my name is EcoBot from EcoSankalp🌱',
+      text: 'Hi, my name is EcoBot from EarthGuardian-Pro🌱',
       createdAt: new Date(),
       user: {
         _id: 2,

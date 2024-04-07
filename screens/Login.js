@@ -56,7 +56,7 @@ const Login = ({ navigation }) => {
                         marginHorizontal: 2,
                         color: 'white'
                     }}>
-                        Eco-Sankalp Toolkit 🌿
+                        EarthGuardian-Pro Toolkit 🌿
                     </Text>
 
                     <Text style={{
